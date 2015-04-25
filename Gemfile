@@ -4,6 +4,9 @@ gem "lita"
 
 gem "lita-amenity", :path=> 'lita-amenity'
 
+# Uncomment to use the Twitter adapter
+ gem 'lita-twitter'
+
 # Uncomment to use the HipChat adapter
 # gem "lita-hipchat"
 
