@@ -34,7 +34,7 @@ Lita.configure do |config|
 
   # Uncomment to use the Twitter adapter
   # You will need the config.yml which is stored outside of git. Ask brksrly 
-  #config.robot.adapter = :twitter
+  # config.robot.adapter = :twitter
   load_twitter_keys(config) if config.robot.adapter == :twitter
 
   ## Example: Set options for the chosen adapter.
