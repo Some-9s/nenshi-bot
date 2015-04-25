@@ -18,3 +18,5 @@ gem "lita-amenity", :path=> 'lita-amenity'
 gem "lita-google-images"
 gem "lita-selfie", :path => 'lita-selfie'
 #gem "lita-karma"
+
+gem "lita-traffic_cams", :path => 'lita-traffic_cams'
