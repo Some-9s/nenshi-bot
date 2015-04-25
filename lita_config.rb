@@ -1,13 +1,19 @@
-def load_twitter_keys (config)
-  config_yml = begin
+require 'yaml'
+
+def load_config (config)
+  $config_yaml = begin
     YAML.load(File.open("config.yml"))
   rescue ArgumentError => e
     puts "Could not parse YAML: #{e.message}"
   end
-  config.adapters.twitter.api_key             = config_yml["twitter"]["api_key"]
-  config.adapters.twitter.api_secret          = config_yml["twitter"]["api_secret"]
-  config.adapters.twitter.access_token        = config_yml["twitter"]["access_token"]
-  config.adapters.twitter.access_token_secret = config_yml["twitter"]["access_token_secret"]
+
+  if config.robot.adapter == :twitter
+    config.adapters.twitter.api_key = $config_yaml["twitter"]["api_key"]
+    config.adapters.twitter.api_secret = $config_yaml["twitter"]["api_secret"]
+    config.adapters.twitter.access_token = $config_yaml["twitter"]["access_token"]
+    config.adapters.twitter.access_token_secret = $config_yaml["twitter"]["access_token_secret"]
+  end
+
 end
 
 Lita.configure do |config|
@@ -35,7 +41,7 @@ Lita.configure do |config|
   # Uncomment to use the Twitter adapter
   # You will need the config.yml which is stored outside of git. Ask brksrly 
   # config.robot.adapter = :twitter
-  load_twitter_keys(config) if config.robot.adapter == :twitter
+  load_config(config)
 
   ## Example: Set options for the chosen adapter.
   # config.adapter.username = "myname"
