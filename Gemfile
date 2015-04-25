@@ -12,3 +12,5 @@ gem "lita"
 # For example:
 gem "lita-google-images"
 #gem "lita-karma"
+
+gem "lita-traffic_cams", :path => 'lita-traffic_cams'
