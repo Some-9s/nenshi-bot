@@ -6,16 +6,18 @@ module Lita
 
       route(/fire station[s]? around\s+(.+)/, :lookup, help: {"fire station(s) around ADDRESS" => "Returns fire stations near given address."})
 
-      route(/fire station[s]? near me$/, :geolookup, help: {"fire station(s) near me" => "Returns fire stations around your location."})
+      route(/fire station[s]? near me/, :geolookup, help: {"fire station(s) near me" => "Returns fire stations around your location."})
 
       route(/(all fire stations)|(^(?=.*\bstations\b)(?=.*\bmap\b).*$)/,:map, help: {"Map all stations" => "Returns link to map of all fire stations."})
+
+      route(/services.*station\s([0-9]{1,2})/, :services, help: {"What services are offered at station \#\#?" => "Returns services at specific station."})
 
       def emergency(response)
         response.reply "Something's on FIRE?!?!\n I can't beleive I have to say this but, call 911!"
       end
 
       def lookup(response)
-        address = response.matches[0].to_s[2...-2]
+        address = response.matches[0][0]
         quad = address.split(//).last(2).join.upcase
         response.reply "Looking for nearest fire stations near #{address}.."
         case quad
@@ -28,7 +30,7 @@ module Lita
         when "NW"
           response.reply "Fire stations in SE: "
         else
-          response.reply "Address doesn't have a valid quadrant (NE,NW,SE,SW)!"
+          response.reply "I can't believe I have to say this but, addresses usually end with a quadrant (NE,NW,SE,SW)!"
         end
       end
 
@@ -37,7 +39,12 @@ module Lita
       end
 
       def geolookup(response)
-          response.reply "I don't know where you are!"
+          response.reply "Looks like you're near City Hall - the closet fire stations are:\n Station 1 - 450 1 ST SE\n Station 2 - 1010 10 AV SW"
+      end
+
+      def services(response)
+        station = response.matches[0].last.to_s
+        response.reply "Services at Station #{station}:"
       end
 
     end
