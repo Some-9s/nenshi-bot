@@ -1,3 +1,15 @@
+def load_twitter_keys (config)
+  config_yml = begin
+    YAML.load(File.open("config.yml"))
+  rescue ArgumentError => e
+    puts "Could not parse YAML: #{e.message}"
+  end
+  config.adapters.twitter.api_key             = config_yml["twitter"]["api_key"]
+  config.adapters.twitter.api_secret          = config_yml["twitter"]["api_secret"]
+  config.adapters.twitter.access_token        = config_yml["twitter"]["access_token"]
+  config.adapters.twitter.access_token_secret = config_yml["twitter"]["access_token_secret"]
+end
+
 Lita.configure do |config|
   # The name your robot will use.
   config.robot.name = "NenshiBot"
@@ -19,6 +31,12 @@ Lita.configure do |config|
   # appropriate gem to the Gemfile.
   config.robot.adapter = :shell
 
+
+  # Uncomment to use the Twitter adapter
+  # You will need the config.yml which is stored outside of git. Ask brksrly 
+  # config.robot.adapter = :twitter
+  load_twitter_keys(config) if config.robot.adapter == :twitter
+
   ## Example: Set options for the chosen adapter.
   # config.adapter.username = "myname"
   # config.adapter.password = "secret"
@@ -31,3 +49,5 @@ Lita.configure do |config|
   ## documentation for options.
   # config.handlers.some_handler.some_config_key = "value"
 end
+
+

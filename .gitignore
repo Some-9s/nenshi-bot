@@ -9,6 +9,9 @@ boxes/*
 /website/www/.vagrant
 /vagrant-spec.config.rb
 
+# Config YML File
+config.yml
+
 # Bundler/Rubygems
 *.gem
 .bundle
