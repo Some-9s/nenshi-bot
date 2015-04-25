@@ -2,6 +2,9 @@ source "https://rubygems.org"
 
 gem "lita"
 
+# Uncomment to use the Twitter adapter
+# gem 'lita-twitter'
+
 # Uncomment to use the HipChat adapter
 # gem "lita-hipchat"
 
