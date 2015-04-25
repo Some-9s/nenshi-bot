@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem "lita"
+gem "bigquery"
 
 gem "lita-amenity", :path=> 'lita-amenity'
 
