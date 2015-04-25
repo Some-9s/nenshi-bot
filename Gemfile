@@ -16,6 +16,7 @@ gem "lita-amenity", :path=> 'lita-amenity'
 # Add handlers to give Lita new functionality.
 # For example:
 gem "lita-google-images"
+gem "lita-fire_stations", :path => 'lita-fire_stations'
 gem "lita-selfie", :path => 'lita-selfie'
 #gem "lita-karma"
 
