@@ -11,4 +11,5 @@ gem "lita"
 # Add handlers to give Lita new functionality.
 # For example:
 gem "lita-google-images"
+gem "lita-selfie", :path => 'lita-selfie'
 #gem "lita-karma"
