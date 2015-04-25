@@ -2,13 +2,13 @@ module Lita
   module Handlers
     class FireStations < Handler
 
-      route(/on fire/, :emergency)
+      route(/on fire/, :emergency, help: {"on fire" => "You need advice on this?"})
 
-      route(/fire station[s]? around\s+(.+)/, :lookup)
+      route(/fire station[s]? around\s+(.+)/, :lookup, help: {"fire station(s) around ADDRESS" => "Returns fire stations near given address."})
 
-      route(/fire station[s]? near me$/, :geolookup)
+      route(/fire station[s]? near me$/, :geolookup, help: {"fire station(s) near me" => "Returns fire stations around your location."})
 
-      route(/(all fire stations)|(^(?=.*\bstations\b)(?=.*\bmap\b).*$)/,:map)
+      route(/(all fire stations)|(^(?=.*\bstations\b)(?=.*\bmap\b).*$)/,:map, help: {"Map all stations" => "Returns link to map of all fire stations."})
 
       def emergency(response)
         response.reply "Something's on FIRE?!?!\n I can't beleive I have to say this but, call 911!"
