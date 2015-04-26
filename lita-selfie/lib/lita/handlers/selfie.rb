@@ -4,7 +4,7 @@ module Lita
 
       URL = "https://ajax.googleapis.com/ajax/services/search/images"
 
-      route(/selfie\?/, :fetch, command: true, help: {
+      route(/selfie\?/, :fetch, help: {
         "How about a selfie?" => "Displays a random selfie from Google Images for Nenshi."
       })
 
