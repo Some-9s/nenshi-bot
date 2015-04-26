@@ -3,7 +3,9 @@ module Lita
   module Handlers
     class TrafficCams < Handler
 
-      route(/What.+traffic\s+(look\s)?(like\s)?((at)|(on))\s(.+)[?]?/i, :traffic_at, command: false, help: {"What is the traffic like at [location]?" => "Displays the traffic status of [location]"})
+      # route(/how\s(the\s)?(.)/)
+
+      route(/What.+traffic\s+(look\s)?(like\s)?((at\s)|(on\s))(the\s)?(.+)[?]?/i, :traffic_at, command: false, help: {"What is the traffic like at [location]?" => "Displays the traffic status of [location]"})
 
       route(/What.+traffic\s+(look\s)?(like\s)?near me?/i, :traffic_at_city_hall, command: false, help: {"What is the traffic like near me?" => "Displays the traffic status of [location]"})
 
@@ -18,7 +20,7 @@ module Lita
       def traffic_at(response,location = nil)
         reply = ''
 
-        location ||= response.matches[0][4]
+        location ||= response.matches[0][6]
 
         location_data = get_location_at(response, location, reply)
 
@@ -50,10 +52,10 @@ module Lita
 
       def get_pictures(reply, location_data)
         location_data.each do |row|
-          reply << "#{row['f'][0]['v']}, "
+          reply << "#{row['f'][0]['v'].lstrip}\n"
         end
 
-        reply.chomp().chomp(',')
+        reply.chomp()
       end
 
     end
