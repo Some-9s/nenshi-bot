@@ -24,10 +24,10 @@ module Lita
         if data["responseStatus"] == 200
           choice = data["responseData"]["results"].sample
           if choice
-            response.reply "Social Medium time!\n"
-            response.reply ensure_extension(choice["unescapedUrl"])
+            response.reply_with_mention "Social Medium time!\n"
+            response.reply_with_mention ensure_extension(choice["unescapedUrl"])
           else
-            response.reply %{No images found for "#{query}".}
+            response.reply_with_mention %{No images found for "#{query}".}
           end
         else
           reason = data["responseDetails"] || "unknown error"
