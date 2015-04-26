@@ -1,7 +1,7 @@
 module Lita
   module Handlers
     class Amenity < Handler
-        $plug = 'Brought to by tiny.cc/afpgxx'
+        $plug =''
         # Routes:
         route(/run$|run /i,:athletic)
         route(/poo |leak |crap |poo$|leak$|crap$/i,:poop)
