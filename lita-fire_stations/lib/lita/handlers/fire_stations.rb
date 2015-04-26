@@ -25,8 +25,8 @@ module Lita
 
       def get_opt()
         opts = {}
-        opts['client_id']     = $config_yaml['firestations']['client_id']
-        opts['service_email'] = $config_yaml['firestations']['service_email']
+        opts['client_id']     = $config_yaml['bigquery']['client_id']
+        opts['service_email'] = $config_yaml['bigquery']['service_email']
         opts['key']           = $config_yaml['bigquery']['key']
         opts['project_id']    = $config_yaml['bigquery']['project_id']
         opts['dataset']       = $config_yaml['bigquery']['dataset']
