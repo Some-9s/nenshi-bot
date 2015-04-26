@@ -3,9 +3,9 @@ module Lita
   module Handlers
     class TrafficCams < Handler
 
-      route(/What.+traffic\s+(like\s)?((at)|(on))\s(.+)[?]?/i, :traffic_at, command: false, help: {"What is the traffic like at [location]?" => "Displays the traffic status of [location]"})
+      route(/What.+traffic\s+(look\s)?(like\s)?((at)|(on))\s(.+)[?]?/i, :traffic_at, command: false, help: {"What is the traffic like at [location]?" => "Displays the traffic status of [location]"})
 
-      route(/What.+traffic\s+(like\s)?near me?/i, :traffic_at_city_hall, command: false, help: {"What is the traffic like near me?" => "Displays the traffic status of [location]"})
+      route(/What.+traffic\s+(look\s)?(like\s)?near me?/i, :traffic_at_city_hall, command: false, help: {"What is the traffic like near me?" => "Displays the traffic status of [location]"})
 
       route(/((where)|(what)) are all of the (available\s)?traffic cams[?]?/i, command: false, help: {"Where are all of the traffic cams?" => "Displays a map of the available traffic cams"}) do |response|
         response.reply_with_mention "Honestly, I think we need more!! http://tinyurl.com/n39lkx2"
