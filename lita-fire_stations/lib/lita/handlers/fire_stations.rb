@@ -4,12 +4,10 @@ module Lita
   module Handlers
     class FireStations < Handler
 
-      @@opts = {}
-      @@opts['client_id']     = #
-      @@opts['service_email'] = #
-      @@opts['key']           = '/vagrant/supersecret_bigquery.p12'
-      @@opts['project_id']    = 'robotic-sphere-92619'
-      @@opts['dataset']       = 'firestations'
+      route(/test/) do |response |
+        response.reply($config_yaml.to_json)
+        response.reply($config_yaml["firestations"]["client_id"])
+      end
 
       route(/on fire/, :emergency, help: {"on fire" => "You need advice on this?"})
 
@@ -25,8 +23,18 @@ module Lita
         response.reply "Something's on FIRE?!?!\n I can't beleive I have to say this but, call 911!"
       end
 
+      def get_opt()
+        opts = {}
+        opts['client_id']     = $config_yaml['firestations']['client_id']
+        opts['service_email'] = $config_yaml['firestations']['service_email']
+        opts['key']           = $config_yaml['bigquery']['key']
+        opts['project_id']    = $config_yaml['bigquery']['project_id']
+        opts['dataset']       = $config_yaml['bigquery']['dataset']
+        opts
+      end
+
       def lookup(response)
-        bq = BigQuery::Client.new(@@opts)
+        bq = BigQuery::Client.new(get_opt)
         address = response.matches[0][0]
         quad = address.split(//).last(2).join.upcase
         response.reply "Looking for nearest fire stations near #{address}.."
@@ -77,7 +85,7 @@ module Lita
       def servlookup(response)
         service = response.matches[0][0].split('?').first.to_s
 
-        bq = BigQuery::Client.new(@@opts)
+        bq = BigQuery::Client.new(get_opt)
 
         case service.downcase
         when "tours"

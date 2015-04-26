@@ -43,3 +43,5 @@ doc/
 .ruby-version
 .rvmrc
 
+# BigQuery p12 file
+*.p12
