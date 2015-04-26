@@ -9,15 +9,15 @@ module Lita
         response.reply_with_mention($config_yaml["firestations"]["client_id"])
       end
 
-      route(/on fire/, :emergency, help: {"on fire" => "You need advice on this?"})
+      route(/on fire/i, :emergency, help: {"on fire" => "You need advice on this?"})
 
-      route(/fire station[s]? around\s+(.+)/, :lookup, help: {"fire station(s) around ADDRESS" => "Returns fire stations near ADDRESS."})
+      route(/fire station[s]? around\s+(.+)/i, :lookup, help: {"fire station(s) around ADDRESS" => "Returns fire stations near ADDRESS."})
 
-      route(/fire station[s]? near me/, :geolookup, help: {"fire station(s) near me" => "Returns fire stations around your location."})
+      route(/fire station[s]? near me/i, :geolookup, help: {"fire station(s) near me" => "Returns fire stations around your location."})
 
-      route(/(all fire stations)|(^(?=.*\bstations\b)(?=.*\bmap\b).*$)/,:map, help: {"Map all stations" => "Returns link to map of all fire stations."})
+      route(/(all fire stations)|(^(?=.*\bstations\b)(?=.*\bmap\b).*$)/i,:map, help: {"Map all stations" => "Returns link to map of all fire stations."})
 
-      route(/station[s]?.*offer[s]?\s+(.+)/, :servlookup, help: {"What station offers SERVICE?" => "Returns list of stations that offer SERVICE."})
+      route(/station[s]?.*offer[s]?\s+(.+)/i, :servlookup, help: {"What station offers SERVICE?" => "Returns list of stations that offer SERVICE."})
 
       def emergency(response)
         response.reply_with_mention "Something's on FIRE?!?!\n I can't believe I have to say this but, call 911!"
