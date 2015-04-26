@@ -9,15 +9,15 @@ module Lita
         response.reply_with_mention($config_yaml["firestations"]["client_id"])
       end
 
-      route(/on fire/, :emergency, help: {"on fire" => "You need advice on this?"})
+      route(/on fire/i, :emergency, help: {"on fire" => "You need advice on this?"})
 
-      route(/fire station[s]? around\s+(.+)/, :lookup, help: {"fire station(s) around ADDRESS" => "Returns fire stations near ADDRESS."})
+      route(/fire station[s]? around\s+(.+)/i, :lookup, help: {"fire station(s) around ADDRESS" => "Returns fire stations near ADDRESS."})
 
-      route(/fire station[s]? near me/, :geolookup, help: {"fire station(s) near me" => "Returns fire stations around your location."})
+      route(/fire station[s]? near me/i, :geolookup, help: {"fire station(s) near me" => "Returns fire stations around your location."})
 
-      route(/(all fire stations)|(^(?=.*\bstations\b)(?=.*\bmap\b).*$)/,:map, help: {"Map all stations" => "Returns link to map of all fire stations."})
+      route(/(all fire stations)|(^(?=.*\bstations\b)(?=.*\bmap\b).*$)/i,:map, help: {"Map all stations" => "Returns link to map of all fire stations."})
 
-      route(/station[s]?.*offer[s]?\s+(.+)/, :servlookup, help: {"What station offers SERVICE?" => "Returns list of stations that offer SERVICE."})
+      route(/station[s]?.*offer[s]?\s+(.+)/i, :servlookup, help: {"What station offers SERVICE?" => "Returns list of stations that offer SERVICE."})
 
       def emergency(response)
         response.reply_with_mention "Something's on FIRE?!?!\n I can't believe I have to say this but, call 911!"
@@ -37,35 +37,34 @@ module Lita
         bq = BigQuery::Client.new(get_opt)
         address = response.matches[0][0]
         quad = address.split(//).last(2).join.upcase
-        response.reply_with_mention "Looking for nearest fire stations near #{address}.."
         case quad
         when "SE"
-          response.reply_with_mention "Fire stations in SE: "
+          base_reply = "Fire stations in SE: "
 
           data = bq.query("SELECT station_name,address FROM [firestations.firestation_services] WHERE address like '%SE'")
 
-          print(data,response)
+          print(data,response,base_reply)
 
         when "SW"
-          response.reply_with_mention "Fire stations in SW: "
+          base_reply = "Fire stations in SW: "
 
           data = bq.query("SELECT station_name,address FROM [firestations.firestation_services] WHERE address like '%SW'")
 
-          print(data,response)
+          print(data,response,base_reply)
 
         when "NE"
-          response.reply_with_mention "Fire stations in NE: "
+          base_reply = "Fire stations in NE: "
 
           data = bq.query("SELECT station_name,address FROM [firestations.firestation_services] WHERE address like '%NE'")
 
-          print(data,response)
+          print(data,response,base_reply)
 
         when "NW"
-          response.reply_with_mention "Fire stations in SW: "
+          base_reply = "Fire stations in NW: "
 
           data = bq.query("SELECT station_name,address FROM [firestations.firestation_services] WHERE address like '%NW'")
 
-          print(data,response)
+          print(data,response,base_reply)
 
         else
           response.reply_with_mention "I can't believe I have to say this but, addresses usually end with a quadrant (NE,NW,SE,SW)!"
@@ -89,18 +88,18 @@ module Lita
 
         case service.downcase
         when "tours"
-          response.reply_with_mention "Stations with tours:"
+          base_reply = "Stations with tours: "
 
           data = bq.query("SELECT station_name,address FROM [firestations.firestation_services] WHERE StnTours = 'YES'")
 
           print(data,response)
 
         when "chemical drop"
-          response.reply_with_mention "Stations with chemical drop:"
+          base_reply = "Stations with chemical drop: "
 
           data = bq.query("SELECT station_name,address FROM [firestations.firestation_services] WHERE Chem_Drop = 'YES'")
 
-          print(data,response)
+          print(data,response,base_reply)
 
         else
           response.reply_with_mention "Unknown service - how about a selfie"
@@ -108,10 +107,12 @@ module Lita
 
       end
 
-      def print(data,response)
+      def print(data,response,reply)
+        reply += "\n"
         data['rows'].each do |row|
-          response.reply_with_mention "#{row['f'][0]['v']} - #{row['f'][1]['v']}"
+          reply +="#{row['f'][0]['v']} - #{row['f'][1]['v']}\n"
         end
+        response.reply_with_mention "#{reply}"
       end
 
     end

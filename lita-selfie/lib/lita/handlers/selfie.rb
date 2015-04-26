@@ -4,7 +4,7 @@ module Lita
 
       URL = "https://ajax.googleapis.com/ajax/services/search/images"
 
-      route(/selfie\?/, :fetch, command: true, help: {
+      route(/selfie\?/, :fetch, help: {
         "How about a selfie?" => "Displays a random selfie from Google Images for Nenshi."
       })
 
@@ -24,8 +24,7 @@ module Lita
         if data["responseStatus"] == 200
           choice = data["responseData"]["results"].sample
           if choice
-            response.reply_with_mention "Social Medium time!\n"
-            response.reply_with_mention ensure_extension(choice["unescapedUrl"])
+            response.reply_with_mention "Social Medium time!\n#{ensure_extension(choice["unescapedUrl"])}"
           else
             response.reply_with_mention %{No images found for "#{query}".}
           end
