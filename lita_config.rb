@@ -34,7 +34,7 @@ Lita.configure do |config|
   # The adapter you want to connect with. Make sure you've added the
   # appropriate gem to the Gemfile.
   config.robot.adapter = :shell
-  config.robot.adapter = :twitter
+  # config.robot.adapter = :twitter
 
 
   # Uncomment to use the Twitter adapter
