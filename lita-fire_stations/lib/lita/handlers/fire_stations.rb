@@ -37,35 +37,34 @@ module Lita
         bq = BigQuery::Client.new(get_opt)
         address = response.matches[0][0]
         quad = address.split(//).last(2).join.upcase
-        response.reply_with_mention "Looking for nearest fire stations near #{address}.."
         case quad
         when "SE"
-          response.reply_with_mention "Fire stations in SE: "
+          base_reply = "Fire stations in SE: "
 
           data = bq.query("SELECT station_name,address FROM [firestations.firestation_services] WHERE address like '%SE'")
 
-          print(data,response)
+          print(data,response,base_reply)
 
         when "SW"
-          response.reply_with_mention "Fire stations in SW: "
+          base_reply = "Fire stations in SW: "
 
           data = bq.query("SELECT station_name,address FROM [firestations.firestation_services] WHERE address like '%SW'")
 
-          print(data,response)
+          print(data,response,base_reply)
 
         when "NE"
-          response.reply_with_mention "Fire stations in NE: "
+          base_reply = "Fire stations in NE: "
 
           data = bq.query("SELECT station_name,address FROM [firestations.firestation_services] WHERE address like '%NE'")
 
-          print(data,response)
+          print(data,response,base_reply)
 
         when "NW"
-          response.reply_with_mention "Fire stations in SW: "
+          base_reply = "Fire stations in NW: "
 
           data = bq.query("SELECT station_name,address FROM [firestations.firestation_services] WHERE address like '%NW'")
 
-          print(data,response)
+          print(data,response,base_reply)
 
         else
           response.reply_with_mention "I can't believe I have to say this but, addresses usually end with a quadrant (NE,NW,SE,SW)!"
@@ -89,18 +88,18 @@ module Lita
 
         case service.downcase
         when "tours"
-          response.reply_with_mention "Stations with tours:"
+          base_reply = "Stations with tours: "
 
           data = bq.query("SELECT station_name,address FROM [firestations.firestation_services] WHERE StnTours = 'YES'")
 
           print(data,response)
 
         when "chemical drop"
-          response.reply_with_mention "Stations with chemical drop:"
+          base_reply = "Stations with chemical drop: "
 
           data = bq.query("SELECT station_name,address FROM [firestations.firestation_services] WHERE Chem_Drop = 'YES'")
 
-          print(data,response)
+          print(data,response,base_reply)
 
         else
           response.reply_with_mention "Unknown service - how about a selfie"
@@ -108,10 +107,10 @@ module Lita
 
       end
 
-      def print(data,response)
-        reply = ""
+      def print(data,response,reply)
+        reply += "\n"
         data['rows'].each do |row|
-          reply +="#{row['f'][0]['v']} - #{row['f'][0]['v']}\n"
+          reply +="#{row['f'][0]['v']} - #{row['f'][1]['v']}\n"
         end
         response.reply_with_mention "#{reply}"
       end
