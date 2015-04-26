@@ -9,7 +9,7 @@ module Lita
 
       route(/What.+traffic\s+(look\s)?(like\s)?near me?/i, :traffic_at_city_hall, command: false, help: {"What is the traffic like near me?" => "Displays the traffic status near by"})
 
-      route(/((where)|(what)) are all of the (available\s)?traffic cams[?]?/i, command: false, help: {"Where are all of the traffic cams?" => "Displays a map of the available traffic cams"}) do |response|
+      route(/((where)|(what)) are all (of the\s)?(available\s)?traffic cams[?]?/i, command: false, help: {"Where are all of the traffic cams?" => "Displays a map of the available traffic cams"}) do |response|
         response.reply_with_mention "Honestly, I think we need more! http://tinyurl.com/n39lkx2"
       end
 

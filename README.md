@@ -62,6 +62,24 @@ Copy the `config.yml.template` to `config.yml` and change the keys for twitter a
 
 If you are already familiar with Vagrant and have it installed, just run the usual `vagrant up` and `vagrant ssh` commands.
 
+Then run the following to start up the bot
+
+    cd /vagrant
+    bundle install --clean
+    lita
+
+## Connecting to twitter
+
+By default, Nenshi_bot will connect via shell. If you want to connect directly to twitter, just change the handler type in `lita_configl.rb`
+
+From
+
+    config.robot.adapter = :shell
+
+To
+
+    config.robot.adapter = :twitter
+
 ## Documentation
 
 For complete documentation on installing and using the development environment, please visit [Installation](http://docs.lita.io/getting-started/installation/) on the Lita documentation site.
