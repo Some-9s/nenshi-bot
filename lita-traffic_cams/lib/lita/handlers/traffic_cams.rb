@@ -18,7 +18,6 @@ module Lita
       def traffic_at(response,location = nil)
         reply = ''
 
-        response.reply_with_mention("#{response.matches.to_json}\n\n")
         location ||= response.matches[0][4]
 
         location_data = get_location_at(response, location, reply)
@@ -51,10 +50,10 @@ module Lita
 
       def get_pictures(reply, location_data)
         location_data.each do |row|
-          reply << "#{row['f'][0]['v']},"
+          reply << "#{row['f'][0]['v']}, "
         end
 
-        reply.chomp(',')
+        reply.chomp().chomp(',')
       end
 
     end
