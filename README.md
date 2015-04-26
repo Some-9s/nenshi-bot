@@ -2,7 +2,7 @@
 
 ## A Robotic Mayor?
 
-Nenshibot is Calgary's robotic mayor. Using [Calgary's very own open data](https://data.calgary.ca/opendata/Pages/DatasetListingAlphabetical.aspx), Nenshibot will help the citizen of Calgary connect and use Open data in a friendly and interactive way.  
+Nenshibot is Calgary's robotic mayor. Using [Calgary's very own open data](https://data.calgary.ca/opendata/Pages/DatasetListingAlphabetical.aspx), Nenshibot will help the citizen of Calgary connect and use Open data in a friendly and interactive way.
 It's purpose is to alleviate 311 calls, allow Calgarians with the ability to easily interact with Calgary's Open dataset, and have fun doing it!
 
 ## Usage
@@ -30,6 +30,7 @@ It's purpose is to alleviate 311 calls, allow Calgarians with the ability to eas
 Using Twitter, you can tweet to @Nenshi_bot and Nenshibot will respond with a reply!
 
 Example tweet
+
     @Nenshi_bot what is the traffic like on the deerfoot?
 
 His response will be a tweet back with the current traffic status on the deerfoot.
