@@ -92,7 +92,7 @@ module Lita
 
           data = bq.query("SELECT station_name,address FROM [firestations.firestation_services] WHERE StnTours = 'YES'")
 
-          print(data,response,reply)
+          print(data,response,base_reply)
 
         when "chemical drop"
           base_reply = "Stations with chemical drop: "
