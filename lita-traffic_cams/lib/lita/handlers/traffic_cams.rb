@@ -22,7 +22,7 @@ module Lita
 
         location ||= response.matches[0][6]
 
-        location_data = get_location_at(response, location, reply)
+        location_data = get_location_at(response, location.split('?').first, reply)
 
         return response.reply_with_mention("You know what? I can't figure out where \"#{location}\" is, but how about a selfie instead? #selfie") if location_data.nil? or location_data.empty?
 
