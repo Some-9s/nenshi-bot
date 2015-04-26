@@ -2,7 +2,7 @@
 
 ## A Robotic Mayor?
 
-Nenshibot is Calgary's robotic mayor. Using (Calgary's very own open data)[https://data.calgary.ca/opendata/Pages/DatasetListingAlphabetical.aspx], Nenshibot will help the citizen of Calgary connect and use Open data in a friendly and interactive way.
+Nenshibot is Calgary's robotic mayor. Using [Calgary's very own open data](https://data.calgary.ca/opendata/Pages/DatasetListingAlphabetical.aspx), Nenshibot will help the citizen of Calgary connect and use Open data in a friendly and interactive way.  
 It's purpose is to alleviate 311 calls, allow Calgarians with the ability to easily interact with Calgary's Open dataset, and have fun doing it!
 
 ## Usage
@@ -37,12 +37,12 @@ His response will be a tweet back with the current traffic status on the deerfoo
 
 # Under the hood
 
-Nenshibot is a project based off of (Lita)[https://www.lita.io/]. A ruby based chat robot.
+Nenshibot is a project based off of [Lita](https://www.lita.io/). A ruby based chat robot.
 
 * Lita - A Chat robot written in ruby
 * Twitter - Tweet, Tweet
 * Google Big Query - A cloud based datastore
-* (Calgary Open data)[https://data.calgary.ca/opendata/Pages/DatasetListingAlphabetical.aspx] - Calgary's very own open data!
+* [Calgary Open data](https://data.calgary.ca/opendata/Pages/DatasetListingAlphabetical.aspx) - Calgary's very own open data!
 
 # Development environment
 
