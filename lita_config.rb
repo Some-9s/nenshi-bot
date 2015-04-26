@@ -7,12 +7,10 @@ def load_config (config)
     puts "Could not parse YAML: #{e.message}"
   end
 
-  if config.robot.adapter == :twitter
-    config.adapters.twitter.api_key = $config_yaml["twitter"]["api_key"]
-    config.adapters.twitter.api_secret = $config_yaml["twitter"]["api_secret"]
-    config.adapters.twitter.access_token = $config_yaml["twitter"]["access_token"]
-    config.adapters.twitter.access_token_secret = $config_yaml["twitter"]["access_token_secret"]
-  end
+  config.adapters.twitter.api_key = $config_yaml["twitter"]["api_key"]
+  config.adapters.twitter.api_secret = $config_yaml["twitter"]["api_secret"]
+  config.adapters.twitter.access_token = $config_yaml["twitter"]["access_token"]
+  config.adapters.twitter.access_token_secret = $config_yaml["twitter"]["access_token_secret"]
 
 end
 
@@ -36,6 +34,7 @@ Lita.configure do |config|
   # The adapter you want to connect with. Make sure you've added the
   # appropriate gem to the Gemfile.
   config.robot.adapter = :shell
+  # config.robot.adapter = :twitter
 
 
   # Uncomment to use the Twitter adapter
