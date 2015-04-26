@@ -109,9 +109,11 @@ module Lita
       end
 
       def print(data,response)
+        reply = ""
         data['rows'].each do |row|
-          response.reply_with_mention "#{row['f'][0]['v']} - #{row['f'][1]['v']}"
+          reply +="#{row['f'][0]['v']} - #{row['f'][0]['v']}\n"
         end
+        response.reply_with_mention "#{reply}"
       end
 
     end
