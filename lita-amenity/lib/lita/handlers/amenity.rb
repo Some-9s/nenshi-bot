@@ -1,12 +1,12 @@
 module Lita
   module Handlers
     class Amenity < Handler
-        $plug = 'Brought to by tiny.cc/afpgxx'
+        $plug =''
         # Routes:
-        route(/run$|run /i,:athletic)
+        route(/run$|run /i,:athletic, help: {'Run' => "Let's go for a jog"})
         route(/poo |leak |crap |poo$|leak$|crap$/i,:poop)
-        route(/golf |golf$/i,:golf)
-        route(/garbage |garbage$/i,:garbage)
+        route(/golf |golf$/i,:golf, help: {'Golf' => 'What\'s the best golf course?'})
+        route(/garbage |garbage$/i,:garbage, help: {'Garbage' => 'Help, I need a landfill'})
 
         def athletic(response)
           name = 'Glenmore Athletic Park'

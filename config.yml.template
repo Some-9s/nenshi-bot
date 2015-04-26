@@ -1,0 +1,11 @@
+twitter:
+  api_key: twitter_api_key
+  api_secret: twitter_api_secret
+  access_token: twitter_access_token
+  access_token_secret: twitter_access_secret
+bigquery:
+  client_id: google_big_query_client_id
+  service_email: google_gib_query_service_email@developer.gserviceaccount.com
+  key: /vagrant/supersecret_bigquery.p12
+  project_id: google_big_query_project_id
+  dataset: dataset_name
