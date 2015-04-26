@@ -19,6 +19,7 @@ gem 'lita-twitter'
 gem "lita-google-images"
 gem "lita-fire_stations", :path => 'lita-fire_stations'
 gem "lita-selfie", :path => 'lita-selfie'
+gem "lita-douchebag", :path => 'lita-douchebag'
 #gem "lita-karma"
 
 gem "lita-traffic_cams", :path => 'lita-traffic_cams'
